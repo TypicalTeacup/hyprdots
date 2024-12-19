@@ -1,0 +1,38 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = '''$os$directory$character'''
+
+right_format = """$all"""
+
+add_newline = false
+
+[os] 
+disabled = false
+[os.symbols]
+Arch = '󰣇 '
+Artix = '󰣇 '
+Debian = '󰣚 '
+SUSE = ' '
+openSUSE = ' '
+Manjaro = '󱘊 '
+Windows = '🤮 '
+
+[c]
+format = '[$symbol($version)]($style) '
+
+[lua]
+format = '[$symbol($version)]($style) '
+symbol = '󰢱 '
+
+[nodejs]
+format = '[$symbol($version)]($style) '
+
+[python]
+format = '[$symbol($version)]($style) '
+
+[git_branch]
+format = '[$symbol$branch]($style) '
+
+[git_status]
+disabled = true
+
