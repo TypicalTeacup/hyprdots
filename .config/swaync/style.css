@@ -1,0 +1,79 @@
+@define-color ctp-macchiato-rosewater rgb(244, 219, 214);
+@define-color ctp-macchiato-flamingo rgb(240, 198, 198);
+@define-color ctp-macchiato-pink rgb(245, 189, 230);
+@define-color ctp-macchiato-mauve rgb(198, 160, 246);
+@define-color ctp-macchiato-red rgb(237, 135, 150);
+@define-color ctp-macchiato-maroon rgb(238, 153, 160);
+@define-color ctp-macchiato-peach rgb(245, 169, 127);
+@define-color ctp-macchiato-yellow rgb(238, 212, 159);
+@define-color ctp-macchiato-green rgb(166, 218, 149);
+@define-color ctp-macchiato-teal rgb(139, 213, 202);
+@define-color ctp-macchiato-sky rgb(145, 215, 227);
+@define-color ctp-macchiato-sapphire rgb(125, 196, 228);
+@define-color ctp-macchiato-blue rgb(138, 173, 244);
+@define-color ctp-macchiato-lavender rgb(183, 189, 248);
+@define-color ctp-macchiato-text rgb(202, 211, 245);
+@define-color ctp-macchiato-subtext1 rgb(184, 192, 224);
+@define-color ctp-macchiato-subtext0 rgb(165, 173, 203);
+@define-color ctp-macchiato-overlay2 rgb(147, 154, 183);
+@define-color ctp-macchiato-overlay1 rgb(128, 135, 162);
+@define-color ctp-macchiato-overlay0 rgb(110, 115, 141);
+@define-color ctp-macchiato-surface2 rgb(91, 96, 120);
+@define-color ctp-macchiato-surface1 rgb(73, 77, 100);
+@define-color ctp-macchiato-surface0 rgb(54, 58, 79);
+@define-color ctp-macchiato-base rgb(36, 39, 58);
+@define-color ctp-macchiato-mantle rgb(30, 32, 48);
+@define-color ctp-macchiato-crust rgb(24, 25, 38);
+
+* {
+    font-family: "CaskaydiaMono Nerd Font";
+    font-size: 13px;
+    color: @ctp-macchiato-text;
+}
+
+.notification {
+    background-color: @ctp-macchiato-base;
+    border-radius: 12px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: @ctp-macchiato-lavender;
+}
+
+.notification.critical{
+    border-color: @ctp-macchiato-red;
+}
+
+.notification.low {
+    border-color: @ctp-macchiato-surface1;
+}
+
+.notification :hover {
+    background-color: @ctp-macchiato-surface0;
+}
+
+.body {
+    color: @ctp-macchiato-subtext0;
+}
+
+.summary {
+    color: @ctp-macchiato-text;
+}
+
+.control-center {
+    background-color: @ctp-macchiato-base;
+}
+
+
+.control-center .text-button {
+    background-color: rgba(91, 96, 120,0.6);
+    border-color: @ctp-macchiato-surface0;
+}
+
+.control-center-dnd {
+    background-color: @ctp-macchiato-base;
+    border-radius: 1000px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: @ctp-macchiato-lavender;
+}
+

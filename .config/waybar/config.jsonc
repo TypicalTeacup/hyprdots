@@ -1,0 +1,94 @@
+{
+    "layer": "top",
+    "margin-top": 4,
+    "height": 23,
+    "margin-left": 16,
+    "margin-right": 16,
+
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    "modules-center": ["temperature", "cpu", "memory", "disk"],
+    "modules-right": [
+        "tray",
+        "hyprland/submap",
+        "pulseaudio",
+        "battery",
+        "network",
+        "clock",
+    ],
+
+    "hyprland/window": {
+        "max-length": 25,
+    },
+    "hyprland/workspaces": {
+        "format": "{name} {icon}",
+        "format-icons": {
+            "1": "",
+            "2": "󰈹",
+            "3": "",
+            "9": "",
+            "10": "󰓇",
+            "default": " ",
+        },
+    },
+
+    "network": {
+        "interval": 1,
+        "format": "{essid}",
+        "format-wifi": " {essid}",
+        "format-ethernet": " {ipaddr}/{cidr}",
+        "format-disconnected": "",
+        "tooltip-format": " {ifname} via {gwaddr}",
+        "tooltip-format-wifi": " {ipaddr} ({signalStrength}%) ",
+        "tooltip-format-ethernet": " {ifname}",
+        "tooltip-format-disconnected": "Disconnected",
+        "max-length": 20,
+        "on-click": "iwctl station wlan0 scan"
+    },
+    "temperature": {
+        "interval": 1,
+        "thermal-zone": 8,
+        "critical-threshold": 80,
+        "format": " {temperatureC}°C",
+    },
+    "cpu": {
+        "interval": 1,
+        "format": "󰍛 {usage}%",
+    },
+    "memory": {
+        "interval": 1,
+        "format": " {used}GiB ({percentage}%)",
+    },
+    "disk": {
+        "format": "󰋊 {used}/{total}",
+    },
+
+    "hyprland/submap": {
+        "format": " {}",
+        "tooltip": false,
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "{volume}%",
+        "format-icons": ["", "", ""],
+    },
+    "battery": {
+        "interval": 5,
+        "format": "{icon} {capacity}%",
+        "format-icons": ["", "", "", "", ""],
+        "states": {
+            // "warning": 30,
+            "critical": 15,
+        },
+    },
+    "clock": {
+        "interval": 1,
+        "format": "{:%H:%M}",
+        "tooltip": true,
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "format": {
+                "today": "<span><b><u>{}</u></b></span>"
+            }
+        }
+    },
+}
