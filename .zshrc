@@ -66,7 +66,3 @@ export GPG_TTY=$(tty)
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-
-if [[ $- == *i* ]]; then
-    exec fish
-fi
