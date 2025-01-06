@@ -33,24 +33,7 @@ yay -Syu --noconfirm hyprland alacritty tofi lf swaync cava fastfetch fish wayba
 
 systemctl --user enable ydotool.service
 
-# get monitors
-MONITORS=$(for connector in /sys/class/drm/*/status; do
-    if [ "$(cat $connector)" = "connected" ]; then
-        basename "$(dirname "$connector")" | sed 's/^card[0-9]-//'
-    fi
-done)
-
-if [ -z "$MONITORS" ]; then
-    echo "[hyprdots] No monitors found. Set wallpaper manually with swww img"
-else
-    # set wallpaper to ~/.config/bg.png
-    echo "[hyprdots] Setting wallpaper"
-    mkdir -p ~/.cache/swww 
-    for MONITOR in $MONITORS
-    do
-        echo "$HOME/.config/bg.png" > "$HOME/.cache/swww/$MONITOR"
-    done
-fi
+echo "[hyprdots] To set wallpaper, run swww img .config/bg.png"
 
 # reboot
 read -p "hyprdots installed, reboot? [y/N] " choice
