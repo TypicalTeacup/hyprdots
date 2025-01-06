@@ -29,7 +29,7 @@ else
 fi
 
 # install requirements
-yay -Syu --noconfirm hyprland alacritty tofi lf swaync cava fastfetch fish waybar starship xdg-desktop-portal-hyprland pipewire wireplumber pipewire-pulse qt5-wayland qt6-wayland wl-clipboard dex grim slurp firefox electron29-bin vesktop-bin caprine ydotool pass pass-otp zoxide fzf eza noto-fonts-emoji noto-fonts-cjk noto-fonts ttf-font-awesome ttf-font-awesome-4 ttf-dejavu-nerd ttf-dejavu swww bat bat-extras ttf-cascadia-mono-nerd
+yay -Syu --noconfirm hyprland alacritty tofi lf swaync cava fastfetch fish waybar starship xdg-desktop-portal-hyprland pipewire wireplumber pipewire-pulse qt5-wayland qt6-wayland wl-clipboard dex grim slurp firefox electron29-bin vesktop-bin caprine ydotool pass pass-otp zoxide fzf eza noto-fonts-emoji noto-fonts-cjk noto-fonts ttf-font-awesome ttf-font-awesome-4 ttf-dejavu-nerd ttf-dejavu swww bat bat-extras ttf-cascadia-mono-nerd neovim less
 
 systemctl --user enable ydotool.service
 
@@ -46,7 +46,7 @@ else
     # set wallpaper to ~/.config/bg.png
     echo "[hyprdots] Setting wallpaper"
     mkdir -p ~/.cache/swww 
-    for MONITOR in MONITORS
+    for MONITOR in $MONITORS
     do
         echo "$HOME/.config/bg.png" > "$HOME/.cache/swww/$MONITOR"
     done
