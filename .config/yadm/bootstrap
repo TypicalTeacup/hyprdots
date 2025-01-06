@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+if [ ! -f /bin/pacman ]; then
+    echo "[hyprdots] Only Arch-based distros are supported. Install manually"
+    exit 1
+fi
+
+sudo true
+if [ -f /bin/yay ]; then
+    echo "[hyprdots] yay is installed"
+else
+    echo "[hyprdots] yay is not installed, installing"
+    sudo pacman -S --needed git base-devel
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si
+    cd ..
+    rm -rf yay
+fi
+
+read -p "[hyprdots] Install GDM? [Y/n] " choice
+if [ "$choice" == [Nn] ]; then
+    echo "[hyprdots] Skipping GDM install"
+else
+    echo "[hyprdots] Installing GDM"
+    sudo pacman -S gdm --noconfirm
+
+    echo "[hyprdots] Enabling GDM"
+    sudo systemctl enable gdm --force
+fi
+
+# install requirements
+yay -Syu --noconfirm hyprland alacritty tofi lf swaync cava fastfetch fish waybar starship xdg-desktop-portal-hyprland pipewire wireplumber pipewire-pulse qt5-wayland qt6-wayland wl-clipboard dex grim slurp firefox vesktop-bin caprine ydotool pass pass-otp
+
+systemctl --user enable ydotool.service
+
+# get monitors
+MONITORS=$(for connector in /sys/class/drm/*/status; do
+    if [ "$(cat $connector)" = "connected" ]; then
+        basename "$(dirname "$connector")" | sed 's/^card[0-9]-//'
+    fi
+done)
+
+if [ -z "$MONITORS" ]; then
+    echo "[hyprdots] No monitors found. Set wallpaper manually with swww img"
+else
+    # set wallpaper to ~/.config/bg.png
+    echo "[hyprdots] Setting wallpaper"
+    mkdir -p ~/.cache/swww 
+    for MONITOR in MONITORS
+    do
+        echo "$HOME/.config/bg.png" > "$HOME/.cache/swww/$MONITOR"
+    done
+fi
+
+# reboot
+read -p "hyprdots installed, reboot? [y/N]" choice
+
+if [ "$choice" == [Yy] ]; then
+    reboot now
+fi
