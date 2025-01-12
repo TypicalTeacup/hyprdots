@@ -1,0 +1,11 @@
+# BEGIN_KITTY_THEME
+# Catppuccin-Macchiato
+include current-theme.conf
+# END_KITTY_THEME
+
+font_family family="CaskaydiaMono Nerd Font"
+background_opacity 0.5
+
+shell /bin/fish
+
+
