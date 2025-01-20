@@ -6,5 +6,7 @@ if status is-interactive
     alias man='batman'
     alias cat='bat'
 
-    alias v=nvim
+    alias v='nvim'
+
+    alias lg='lazygit'
 end
