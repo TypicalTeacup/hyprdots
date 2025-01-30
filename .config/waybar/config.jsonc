@@ -42,11 +42,11 @@
         "tooltip-format-ethernet": " {ifname}",
         "tooltip-format-disconnected": "Disconnected",
         "max-length": 20,
-        "on-click": "iwctl station wlan0 scan"
+        "on-click": "nmcli device wifi rescan"
     },
     "temperature": {
         "interval": 1,
-        "thermal-zone": 8,
+        "thermal-zone": 3,
         "critical-threshold": 80,
         "format": " {temperatureC}°C",
     },

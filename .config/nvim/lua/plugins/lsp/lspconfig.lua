@@ -96,10 +96,17 @@ return {
 			},
 		})
 		setup("cssls")
-		setup("volar")
+		setup("volar", {
+			init_options = {
+				typescript = {
+					tsdk = "/usr/lib/node_modules/typescript/lib",
+				},
+			},
+		})
 		setup("jdtls")
 		setup("pyright")
 		setup("tailwindcss")
+		setup("intelephense")
 		setup("gopls")
 	end,
 }
