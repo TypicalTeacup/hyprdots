@@ -1,5 +1,5 @@
 if status is-interactive
-    alias ls='eza --icons --group-directories-first'
+    alias ls='eza --icons --group-directories-first --hyperlink'
     alias la='ls -a'
     alias ll='ls -al'
 
@@ -10,4 +10,5 @@ if status is-interactive
     alias lg='lazygit'
 
     alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
+    alias icat='kitty icat'
 end
