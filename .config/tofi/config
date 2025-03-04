@@ -21,5 +21,3 @@ background-color = #24273a
 fuzzy-match = true
 terminal = alacritty
 drun-launch = true
-
-

@@ -72,7 +72,7 @@
         "format-icons": ["", "", ""],
     },
     "battery": {
-        "interval": 5,
+        "interval": 1,
         "format": "{icon} {capacity}%",
         "format-icons": ["", "", "", "", ""],
         "states": {

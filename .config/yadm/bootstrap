@@ -29,7 +29,7 @@ else
 fi
 
 # install requirements
-yay -Syu --noconfirm hyprland kitty tofi yazi swaync cava fastfetch fish waybar starship xdg-desktop-portal-hyprland pipewire wireplumber pipewire-pulse qt5-wayland qt6-wayland wl-clipboard dex grim slurp firefox electron29-bin vesktop-bin caprine ydotool pass pass-otp zoxide fzf eza noto-fonts-emoji noto-fonts-cjk noto-fonts ttf-font-awesome ttf-font-awesome-4 ttf-dejavu-nerd ttf-dejavu swww bat bat-extras ttf-cascadia-mono-nerd neovim less lazygit
+yay -Syu --noconfirm hyprland kitty tofi yazi swaync cava fastfetch fish waybar starship xdg-desktop-portal-hyprland pipewire wireplumber pipewire-pulse qt5-wayland qt6-wayland wl-clipboard dex grim slurp zen-browser-bin electron29-bin vesktop-bin caprine ydotool pass pass-otp zoxide fzf eza noto-fonts-emoji noto-fonts-cjk noto-fonts ttf-font-awesome ttf-font-awesome-4 ttf-dejavu-nerd ttf-dejavu swww bat bat-extras ttf-cascadia-mono-nerd neovim less lazygit wtype
 
 systemctl --user enable ydotool.service
 
