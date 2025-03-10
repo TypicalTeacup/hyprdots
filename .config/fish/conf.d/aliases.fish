@@ -7,6 +7,7 @@ if status is-interactive
     alias cat='bat'
 
     alias v='nvim'
+    alias v.='nvim .'
     alias lg='lazygit'
 
     alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
