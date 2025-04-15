@@ -26,7 +26,7 @@
             "2": "󰈹",
             "3": "",
             "9": "",
-            "10": "󰓇",
+            "10": "",
             "default": " ",
         },
     },
@@ -46,7 +46,7 @@
     },
     "temperature": {
         "interval": 1,
-        "thermal-zone": 3,
+        "thermal-zone": 8,
         "critical-threshold": 80,
         "format": " {temperatureC}°C",
     },
