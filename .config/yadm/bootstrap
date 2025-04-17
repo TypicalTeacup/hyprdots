@@ -18,10 +18,10 @@ if [ ! -f /bin/gum -o -f /bin/yay ]; then
     fi
 
     if [ ! -f /bin/yay ]; then
-        sudo pacman -S git base-devel
+        sudo pacman -S --noconfirm git base-devel
         git clone https://aur.archlinux.org/yay.git
         cd yay
-        makepkg -si
+        makepkg -si --noconfirm
         cd ..
         rm -rf yay
     fi
@@ -61,11 +61,17 @@ if gum confirm "Install GDM?"; then
     SYSTEM_SERVICES+=('gdm')
 fi
 
-USAGES=('Development' 'Gaming' 'Making markdown notes' 'Making handwritten notes' 'Listening to music')
-SELECTED_USAGES=$(gum choose --header "What will this device be used for?" --no-limit "${USAGES[@]}")
+USAGES=('Browsing the web' 'Development' 'Gaming' 'Making markdown notes' 'Making handwritten notes' 'Listening to music')
+SELECTED_USAGES=$(gum choose --no-limit \
+    --header "What will this device be used for?" \
+    "${USAGES[@]}")
 
+if [[ $SELECTED_USAGES =~ 'Browsing the web' ]]; then
+    PACKAGES+=('zen-browser-bin')
+fi
 if [[ $SELECTED_USAGES =~ 'Development' ]]; then
-    PACKAGES+=('dblab' 'nodejs' 'posting' 'php')
+    PACKAGES+=('dblab' 'nodejs' 'posting' 'php' 'docker')
+    SYSTEM_SERVICES+=('docker')
 fi
 if [[ $SELECTED_USAGES =~ 'Gaming' ]]; then
     PACKAGES+=('steam' 'itch-bin')
@@ -94,12 +100,8 @@ if [[ $SELECTED_OTHER =~ 'Rice scripts' ]]; then
     PACKAGES+=('cava' 'pipes.sh' 'cmatrix' 'clock-tui')
 fi
 
-echo ${PACKAGES[@]}
-
-# install requirements
-gum spin --spinner line --title "Installing packages" -- yay -Syu ${PACKAGES[@]}
+gum spin --spinner line --title "Installing packages" -- yay -Syu --noconfirm ${PACKAGES[@]}
 sudo systemctl enable ${SYSTEM_SERVICES[@]}
 systemctl --user enable ${USER_SERVICES[@]}
 
-# reboot
 gum confirm "Reboot now?" && reboot
