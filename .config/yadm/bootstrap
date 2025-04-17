@@ -1,43 +1,105 @@
 #!/usr/bin/env bash
 
+TEXT=#cad3f5
+BASE=#24273a
+PINK=#f5bde6
+SKY=#91d7e3
+
 if [ ! -f /bin/pacman ]; then
-    echo "[hyprdots] Only Arch-based distros are supported. Install manually"
+    echo "Only Arch-based distros are supported for now. Please install manually"
     exit 1
 fi
 
-if [ -f /bin/yay ]; then
-    echo "[hyprdots] yay is installed"
-else
-    echo "[hyprdots] yay is not installed, installing"
-    sudo pacman -S --needed git base-devel
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
-    makepkg -si
-    cd ..
-    rm -rf yay
+if [ ! -f /bin/gum -o -f /bin/yay ]; then
+    echo "Installing script dependencies"
+
+    if [ ! -f /bin/gum ]; then
+        sudo pacman -S --noconfirm gum > /dev/null
+    fi
+
+    if [ ! -f /bin/yay ]; then
+        sudo pacman -S git base-devel
+        git clone https://aur.archlinux.org/yay.git
+        cd yay
+        makepkg -si
+        cd ..
+        rm -rf yay
+    fi
+
+fi
+clear
+
+gum style \
+    --foreground $SKY --background $BASE --bold \
+    --border rounded --border-background $BASE --border-foreground $PINK \
+    --padding "1 4" --margin "1 1"\
+    "Hyprdots by TypicalTeacup"
+
+
+PACKAGES=()
+SYSTEM_SERVICES=()
+USER_SERVICES=()
+
+# Hyprland and base packages
+PACKAGES+=('hyprland' 'xdg-desktop-portal-hyprland' 'tofi' 'waybar' 'qt5-wayland' 'qt6-wayland' 'grim' 'slurp' 'wl-clipboard' 'swww' 'dex' 'swaync' 'wtype' 'udiskie')
+
+# Wayland audio
+PACKAGES+=('pipewire' 'wireplumber' 'pipewire-pulse')
+
+# Password manager
+PACKAGES+=('ydotool' 'pass' 'pass-otp')
+USER_SERVICES+=('ydotool')
+
+# Fonts
+PACKAGES+=('noto-fonts-emoji' 'noto-fonts-cjk' 'noto-fonts' 'ttf-font-awesome' 'ttf-font-awesome-4' 'ttf-dejavu-nerd' 'ttf-dejavu' 'ttf-cascadia-mono-nerd')
+
+# Terminal
+PACKAGES+=('kitty' 'fish' 'fastfetch' 'starship' 'zoxide' 'fzf' 'eza' 'bat' 'bat-extras' 'neovim' 'less' 'yazi')
+
+if gum confirm "Install GDM?"; then
+    PACKAGES+=('gdm')
+    SYSTEM_SERVICES+=('gdm')
 fi
 
-read -p "[hyprdots] Install GDM? [Y/n] " choice
-if [ "$choice" == [Nn] ]; then
-    echo "[hyprdots] Skipping GDM install"
-else
-    echo "[hyprdots] Installing GDM"
-    sudo pacman -S gdm --noconfirm
+USAGES=('Development' 'Gaming' 'Making markdown notes' 'Making handwritten notes' 'Listening to music')
+SELECTED_USAGES=$(gum choose --header "What will this device be used for?" --no-limit "${USAGES[@]}")
 
-    echo "[hyprdots] Enabling GDM"
-    sudo systemctl enable gdm --force
+if [[ $SELECTED_USAGES =~ 'Development' ]]; then
+    PACKAGES+=('dblab' 'nodejs' 'posting' 'php')
 fi
+if [[ $SELECTED_USAGES =~ 'Gaming' ]]; then
+    PACKAGES+=('steam' 'itch-bin')
+fi
+if [[ $SELECTED_USAGES =~ 'Making markdown notes' ]]; then
+    PACKAGES+=('obsidian')
+fi
+if [[ $SELECTED_USAGES =~ 'Making handwritten notes' ]]; then
+    PACKAGES+=('xournalpp' 'opentabletdriver')
+    USER_SERVICES+=('opentabletdriver')
+fi
+if [[ $SELECTED_USAGES =~ 'Listening to music' ]]; then
+    PACKAGES+=('youtube-music-bin')
+fi
+
+OTHER=('Discord' 'Facebook Messenger' 'Rice scripts')
+SELECTED_OTHER=$(gum choose --header "Choose extra apps:" --no-limit "${OTHER[@]}")
+
+if [[ $SELECTED_OTHER =~ 'Discord' ]]; then
+    PACKAGES+=('vesktop-bin')
+fi
+if [[ $SELECTED_OTHER =~ 'Facebook Messenger' ]]; then
+    PACKAGES+=('electron29-bin' 'caprine')
+fi
+if [[ $SELECTED_OTHER =~ 'Rice scripts' ]]; then
+    PACKAGES+=('cava' 'pipes.sh' 'cmatrix' 'clock-tui')
+fi
+
+echo ${PACKAGES[@]}
 
 # install requirements
-yay -Syu --noconfirm hyprland kitty tofi yazi swaync cava fastfetch fish waybar starship xdg-desktop-portal-hyprland pipewire wireplumber pipewire-pulse qt5-wayland qt6-wayland wl-clipboard dex grim slurp zen-browser-bin electron29-bin vesktop-bin caprine ydotool pass pass-otp zoxide fzf eza noto-fonts-emoji noto-fonts-cjk noto-fonts ttf-font-awesome ttf-font-awesome-4 ttf-dejavu-nerd ttf-dejavu swww bat bat-extras ttf-cascadia-mono-nerd neovim less lazygit wtype
-
-systemctl --user enable ydotool.service
-
-echo "[hyprdots] To set wallpaper, run swww img .config/bg.png"
+gum spin --spinner line --title "Installing packages" -- yay -Syu ${PACKAGES[@]}
+sudo systemctl enable ${SYSTEM_SERVICES[@]}
+systemctl --user enable ${USER_SERVICES[@]}
 
 # reboot
-read -p "hyprdots installed, reboot? [y/N] " choice
-
-if [ "$choice" == [Yy] ]; then
-    reboot
-fi
+gum confirm "Reboot now?" && reboot
