@@ -13,6 +13,7 @@ if status is-interactive
     alias v='nvim'
     alias v.='nvim .'
     alias lg='lazygit'
+    alias dblc='dblab --config'
 
     alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
     alias icat='kitty icat'
