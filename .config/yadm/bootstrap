@@ -100,8 +100,13 @@ if [[ $SELECTED_OTHER =~ 'Rice scripts' ]]; then
     PACKAGES+=('cava' 'pipes.sh' 'cmatrix' 'clock-tui')
 fi
 
-gum spin --spinner line --title "Installing packages" -- yay -Syu --noconfirm ${PACKAGES[@]}
-sudo systemctl enable ${SYSTEM_SERVICES[@]}
-systemctl --user enable ${USER_SERVICES[@]}
+gum spin --spinner line --title "Installing packages" -- \
+    yay -Syu --noconfirm ${PACKAGES[@]}
+
+sudo systemctl enable ${SYSTEM_SERVICES[@]} 2> /dev/null
+systemctl --user enable ${USER_SERVICES[@]} 2> /dev/null
+
+gum spin --spinner line --title "Rebuilding bat cache" -- \
+    bat cache --build
 
 gum confirm "Reboot now?" && reboot

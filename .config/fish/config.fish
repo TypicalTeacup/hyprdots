@@ -5,6 +5,7 @@ if status is-interactive
 end
 
 export EDITOR=nvim
+export BAT_THEME="Catppuccin Macchiato"
 
 # Created by `pipx` on 2024-12-18 14:19:34
 set PATH $PATH /home/typicalteacup/.local/bin
