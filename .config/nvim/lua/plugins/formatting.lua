@@ -17,6 +17,7 @@ return {
 			vue = { "prettierd" },
 			python = { "isort", "black" },
 			lua = { "stylua" },
+			blade = { "blade-formatter" },
 		},
 		format_on_save = {
 			lsp_fallback = true,

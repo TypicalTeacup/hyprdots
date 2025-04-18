@@ -93,6 +93,7 @@ return {
 				"less",
 				"svelte",
 				"vue",
+				"blade",
 			},
 		})
 		setup("cssls")
