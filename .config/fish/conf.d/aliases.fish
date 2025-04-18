@@ -1,4 +1,8 @@
 if status is-interactive
+    function mkd 
+        mkdir $argv[1] && cd $argv[1]
+    end
+
     alias ls='eza --icons --group-directories-first --hyperlink'
     alias la='ls -a'
     alias ll='ls -al'
@@ -12,4 +16,5 @@ if status is-interactive
 
     alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
     alias icat='kitty icat'
+
 end
