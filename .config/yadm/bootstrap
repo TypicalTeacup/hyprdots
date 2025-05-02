@@ -41,7 +41,7 @@ SYSTEM_SERVICES=()
 USER_SERVICES=()
 
 # Hyprland and base packages
-PACKAGES+=('hyprland' 'xdg-desktop-portal-hyprland' 'tofi' 'waybar' 'qt5-wayland' 'qt6-wayland' 'grim' 'slurp' 'wl-clipboard' 'swww' 'dex' 'swaync' 'wtype' 'udiskie')
+PACKAGES+=('hyprland' 'xdg-desktop-portal-hyprland' 'tofi' 'waybar' 'qt5-wayland' 'qt6-wayland' 'grim' 'slurp' 'wl-clipboard' 'swww' 'dex' 'swaync' 'wtype' 'udiskie' 'bzmenu-git')
 
 # Wayland audio
 PACKAGES+=('pipewire' 'wireplumber' 'pipewire-pulse')

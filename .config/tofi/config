@@ -19,5 +19,5 @@ background-color = #24273a
 # behaviour
 # matching-algorithm = fuzzy
 fuzzy-match = true
-terminal = alacritty
+terminal = kitty
 drun-launch = true
