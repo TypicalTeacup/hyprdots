@@ -1,0 +1,22 @@
+#!/bin/sh
+
+OPTIONS=("Shutdown" "Restart" "Log out")
+
+SELECTION=$( \
+    for option in "${OPTIONS[@]}"; 
+        do echo $option; 
+    done | tofi --prompt-text "   " \
+                --width 200 --height 130
+)
+
+if [[ $SELECTION == "Shutdown" ]]; then
+    shutdown now
+fi
+
+if [[ $SELECTION == "Restart" ]]; then
+    reboot
+fi
+
+if [[ $SELECTION == "Log out" ]]; then
+    hyprctl dispatch exit
+fi
