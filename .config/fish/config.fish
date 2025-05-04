@@ -2,6 +2,7 @@ if status is-interactive
     starship init fish | source
     zoxide init fish --cmd cd | source
     fzf --fish | source
+    fish_vi_key_bindings
 end
 
 export EDITOR=nvim
